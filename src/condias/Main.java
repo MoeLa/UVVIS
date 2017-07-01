@@ -35,16 +35,12 @@ public class Main {
 						e.printStackTrace();
 					}
 				}
-
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		writeToFile(dirs.getRight());
-
-		System.out.println("Moe, Ende");
-
 	}
 
 	private static void writeToFile(String targetDir) {
@@ -57,7 +53,6 @@ public class Main {
 			});
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
