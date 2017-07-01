@@ -18,6 +18,7 @@ import org.apache.commons.lang3.tuple.Pair;
 public class Main {
 
 	private static final MultiValuedMap<String, String> entries = new ArrayListValuedHashMap<>();
+	private static final String topLeftCorner = "";
 
 	public static void main(String[] args) {
 
@@ -28,7 +29,7 @@ public class Main {
 			Files.walk(p).forEach(path -> {
 				if (path.toFile().isFile()) {
 					try {
-						entries.put(" File", path.getFileName().toString());
+						entries.put(topLeftCorner, getYAxis(path.getFileName().toString()));
 						List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_16);
 						treatLines(lines);
 					} catch (IOException e) {
@@ -41,6 +42,13 @@ public class Main {
 		}
 
 		writeToFile(dirs.getRight());
+	}
+
+	private static String getYAxis(String filename) {
+		String[] tokens = filename.split("_");
+		String[] tokens2 = tokens[3].split("\\.");
+		
+		return tokens2[0];
 	}
 
 	private static void writeToFile(String targetDir) {
